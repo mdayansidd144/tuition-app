@@ -1,3 +1,4 @@
+const API_URL = 'https://tuition-app-pbx5.onrender.com/api'
 const token = () => localStorage.getItem('token')
 
 const label = (k) => (['detail', 'non_field_errors', 'records'].includes(k) ? '' : k.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()) + ': ')
@@ -9,7 +10,8 @@ function fmt(d) {
 }
 
 export async function api(path, opts = {}) {
-  const r = await fetch('/api' + path, {
+  // UPDATED: Added API_URL here
+  const r = await fetch(API_URL + path, {
     method: opts.method || 'GET',
     headers: { 'Content-Type': 'application/json', ...(token() ? { Authorization: 'Token ' + token() } : {}) },
     body: opts.body ? JSON.stringify(opts.body) : undefined,
@@ -24,7 +26,8 @@ export async function api(path, opts = {}) {
 }
 
 export async function openPdf(path) {
-  const r = await fetch('/api' + path, { headers: { Authorization: 'Token ' + token() } })
+  // UPDATED: Added API_URL here
+  const r = await fetch(API_URL + path, { headers: { Authorization: 'Token ' + token() } })
   window.open(URL.createObjectURL(await r.blob()), '_blank')
 }
 
