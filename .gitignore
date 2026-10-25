@@ -1,3 +1,4 @@
 node_modules/
 pycache/
 venv/
+postgresql://tuition_db_ft9m_user:Pyk50MQ8tMzEoWJCMDMVzhGwV7IIQXbh@dpg-dbenaucs728c73cpncsg-a/tuition_db_ft9m
