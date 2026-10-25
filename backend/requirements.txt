@@ -1,0 +1,2 @@
+pip install gunicorn whitenoise django-cors-headers dj-database-url psycopg2-binary
+pip freeze > requirements.txt

@@ -1,0 +1,23 @@
+databases:
+  - name: tuition-db
+    databaseName: tuition
+    user: tuition_user
+services:
+  - type: web
+    name: tuition-backend
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tuition-db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://your-frontend-name.vercel.app" # Update this later!
